@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Knots to Beauforts Converter</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 40px 20px;
+			background-color: #fff;
+			box-shadow: 0 0 10px rgba(0,0,0,0.3);
+			border-radius: 5px;
+		}
+
+		h1 {
+			text-align: center;
+			margin-bottom: 30px;
+			color: #4CAF50;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+			color: #444;
+		}
+
+		input[type="number"] {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			margin-bottom: 20px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 10px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			width: 49%;
+			margin-bottom: 20px;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+
+		#result {
+			padding: 10px;
+			background-color: #f2f2f2;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			color: #444;
+			text-align: center;
+			font-weight: bold;
+		}
+		
+		.red-button {
+			background-color: #ff4136;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Knots to Beauforts Converter</h1>
+		<label for="knots-input">Enter value in knots:</label>
+		<input type="number" id="knots-input">
+		<button id="convert-button">Convert</button>
+		<button id="clear-button" class="red-button">Clear</button>
+		<p id="result"></p>
+
+		<script>
+			// Cache DOM element references
+			var inputField = document.getElementById("knots-input");
+						var resultParagraph = document.getElementById("result");
+			var convertButton = document.getElementById("convert-button");
+			var clearButton = document.getElementById("clear-button");
+
+			// Use strict equality operator
+			function convert() {
+				var knots = inputField.value;
+				if (knots === "" || knots === null) {
+					return;
+				}
+				var beauforts = Math.round((knots / 1.852) / 3.01);
+				resultParagraph.innerHTML = "The value in beauforts is: " + beauforts;
+			}
+
+			function clearInput() {
+				inputField.value = "";
+				resultParagraph.innerHTML = "";
+			}
+
+			// Use event delegation
+			var container = document.querySelector(".container");
+			container.addEventListener("click", function(event) {
+				if (event.target === convertButton) {
+					convert();
+				} else if (event.target === clearButton) {
+					clearInput();
+				}
+			});
+		</script>
+	</div>
+</body>
+</html>
+
